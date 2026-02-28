@@ -1,0 +1,28 @@
+{
+  "name": "aulabackendads202601",
+  "version": "1.0.0",
+  "description": "API para gerenciamento de cursos educacionais",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1", 
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SullyvanOgawa/AULABACKENDADS202601.git"
+  },
+  "keywords": [
+    "MVC",
+    "REST",
+    "HTTP",
+    "BACKEND",
+    "API"
+  ],
+  "author": "Sullyvan Ogawa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SullyvanOgawa/AULABACKENDADS202601/issues"
+  },
+  "homepage": "https://github.com/SullyvanOgawa/AULABACKENDADS202601#readme"
+}
