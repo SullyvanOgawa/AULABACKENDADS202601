@@ -8,3 +8,5 @@ console.log(cliente_atual.toString());
 
 cliente_atual.cidade = new Cidade(2, "São Paulo", "SP");
 console.log(cliente_atual.toString());
+
+// 1:42:27 - clienteDB.js - excluir

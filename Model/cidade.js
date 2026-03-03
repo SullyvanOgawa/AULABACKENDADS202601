@@ -35,4 +35,14 @@ export default class cidade{
     toString(){
         return `${this.#nome}/UF: ${this.#uf}`
     }
+
+    async gravar() {}
+
+    async atualizar() {}
+
+    async excluir() {}
+
+    async consultar() {
+        return "";
+    }
 }

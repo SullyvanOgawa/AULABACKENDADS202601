@@ -57,5 +57,16 @@ export default class Cliente {
             Cidade: ${this.#cidade}`
   }
 
+  async gravar() {}
+
+  async atualizar() {}
+
+  async excluir() {}
+
+  async consultar() {
+    return "";
+  }
+
+
   // Minuto 50
 }
