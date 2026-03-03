@@ -5,7 +5,6 @@ export default class Cliente {
   #endereco;
   #bairro;
   #cidade;
-  #unidadeFederativa;
   #telefone;
   #email;
 
@@ -29,14 +28,6 @@ export default class Cliente {
     this.#bairro;
   }
 
-  get cidade() {
-    this.#cidade;
-  }
-
-  get unidadeFederativa() {
-    this.#unidadeFederativa;
-  }
-
   get telefone() {
     this.#telefone;
   }
@@ -45,14 +36,13 @@ export default class Cliente {
     this.#email;
   }
 
-  constructor(id,cpf,nome,endereco,bairro,cidade,unidadeFederativa,telefone,email) {
+  constructor(id,cpf,nome,endereco,bairro,cidade,telefone,email) {
     this.#id = id;
     this.#cpf = cpf;
     this.#nome = nome;
     this.#endereco = endereco;
     this.#bairro = bairro;
     this.#cidade = cidade;
-    this.#unidadeFederativa = unidadeFederativa;
     this.#telefone = telefone;
     this.#email = email;
   }
@@ -62,8 +52,9 @@ export default class Cliente {
   toString(){
     return `Cliente: ${this.#nome}
             CPF: ${this.#cpf}
-            Cidade: ${this.#cidade}
-            UF: ${this.#unidadeFederativa}`;
+            Endereço: ${this.#endereco}
+            Bairro: ${this.#bairro}
+            Cidade: ${this.#cidade}`
   }
 
   // Minuto 50
