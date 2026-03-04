@@ -1,3 +1,4 @@
+import ClienteDB from '../DB/clienteDB.js';
 export default class Cliente {
   #id;
   #cpf;
@@ -9,31 +10,38 @@ export default class Cliente {
   #email;
 
   get id() {
-    this.#id;
+    return this.#id;
   }
 
+  set id(novoId){
+    this.#id = novoId;
+  }
   get cpf() {
-    this.#cpf;
+    return this.#cpf;
   }
 
   get nome() {
-    this.#nome;
+    return this.#nome;
   }
 
   get endereco() {
-    this.#endereco;
+    return this.#endereco;
   }
 
   get bairro() {
-    this.#bairro;
+    return this.#bairro;
+  }
+
+  get cidade() {
+    return this.#cidade;
   }
 
   get telefone() {
-    this.#telefone;
+    return this.#telefone;
   }
 
   get email() {
-    this.#email;
+    return this.#email;
   }
 
   constructor(id,cpf,nome,endereco,bairro,cidade,telefone,email) {
@@ -57,16 +65,26 @@ export default class Cliente {
             Cidade: ${this.#cidade}`
   }
 
-  async gravar() {}
+  async gravar() {
+    const clienteDB = new ClienteDB();
+    await clienteDB.gravar(this);
+  }
 
-  async atualizar() {}
+  async editar() {
+    const clienteDb = new ClienteDB();
+    await clienteDb.editar(this);
+  }
 
-  async excluir() {}
+  async excluir(){
+    const clienteDb = new ClienteDB();
+    await clienteDb.excluir(this);
+  }
 
-  async consultar() {
-    return "";
+  async consultar(termo) {
+    const clienteDb = new ClienteDB();
+    return await clienteDb.consultar(termo);
   }
 
 
-  // Minuto 50
+ 
 }
