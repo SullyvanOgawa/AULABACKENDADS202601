@@ -1,4 +1,4 @@
-export default class cidade{
+export default class Cidade{
     #id;
     #nome;
     #uf;
