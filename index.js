@@ -35,3 +35,5 @@ const port = 4000;
 const app = express();
 
 app.listen(port, localhost, () => console.log(`API Executando na porta ${port}`));
+
+// AULA 3 1:17:24
