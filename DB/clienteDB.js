@@ -68,22 +68,24 @@ export default class ClienteDB {
 
         let sql = "";
         let parametros = [];
-        // consulta verrificara se termo é um número ou uma string.
-        // ele pergunta se termo nao é um número
-        if(isNaN(Number(termo))){
-            sql = `SELECT * FROM cliente as cli
-                            INNER JOIN cidade as cid
-                            ON cli.cid_id = cid.cid_id
-                            WHERE cli.cli_nome LIKE ?`;
-            parametros = [`%${termo}%`];
-        }
-        else{
+        
+        if(!isNaN(Number(termo)) && Number(termo) > 0){
             // caso não seja um número consultar pelo código
             sql = `SELECT * FROM cliente as cli
                             INNER JOIN cidade as cid
                             ON cli.cid_id = cid.cid_id
                             WHERE cli.cli_id = ?`;
             parametros = [termo];
+        }
+        else{
+            // consulta verrificara se termo é um número ou uma string.
+            // ele pergunta se termo nao é um número
+            sql = `SELECT * FROM cliente as cli
+                            INNER JOIN cidade as cid
+                            ON cli.cid_id = cid.cid_id
+                            WHERE cli.cli_nome LIKE ?`;
+            parametros = [`%${termo}%`];
+            
         }
 
         const conexao = await obterConexao();

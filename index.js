@@ -29,11 +29,17 @@
 // // .catch((erro) => console.log(erro.menssage));
 
 import express from "express";
+import rotaCliente from "./routes/rotaCliente.js";
 
 const localhost = '0.0.0.0';
 const port = 4000;
 const app = express();
 
+app.use(express.json()); // permite que o express entenda jason.
+
+// quero que a aplicação ofereça o recurso cliente. 
+app.use("/cliente", rotaCliente);
+
+
 app.listen(port, localhost, () => console.log(`API Executando na porta ${port}`));
 
-// AULA 3 1:17:24

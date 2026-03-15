@@ -10,7 +10,7 @@ export default class ClienteController {
 
         //Para que um requisição seja processada, o seu método (method) deve ser do tipo POST.
                                                         //mimetype - rótulos ou etiquetas para identificar o conteúdo de uma requisição HTTP.
-        if(requisicao.method === "POST" && requisicao.is("aplication/json")){
+        if(requisicao.method === "POST" && requisicao.is("application/json")){
             
                     const cpf = requisicao.body.cpf;
                     const nome = requisicao.body.nome;
@@ -26,10 +26,11 @@ export default class ClienteController {
                         // Por ser uma entidade (objeto). Nesse momento pegamos apenas o id da cidade especificada ao cliente.Em suma, para criar um cliente eu preciso do objeto cidade.
                         // instanciando os objetos cidade e cliente.
                         const cidadeObj = new Cidade(cidade.id);
-                        const cliente = new Cliente(0, cpf, nome, endereco, bairro, cidadeObj, telefone, email);
+                        // quando um campo é AUTO_INCREMENT,  o banco gera o id automaticamente. Então no momento de criar o objeto no Node, você não deve enviar um id fixo. 
+                        const cliente = new Cliente(null, cpf, nome, endereco, bairro, cidadeObj, telefone, email);
 
                         // Não bloquear a execução enquanto o banco de dados não responde, o que deve ser feito é um agendamento de funções anônimas que erão processadas quando houver uma resposta. 
-                        Cliente.gravar().
+                        cliente.gravar().
                         then(() => {
                             resposta.status(201).json({
                                 "status": true,
@@ -59,7 +60,7 @@ export default class ClienteController {
             // developer.mozilla.org/en-US/docs/Web/HTTP/Reference/status.
             resposta.status(405).json({
                 "status": false,
-                "mensagem": "Metodo nao permitido. Consulte a documentação da API."
+                "mensagem": "Metodo não permitido. Consulte a documentação da API."
             });
 
         }
@@ -71,7 +72,7 @@ export default class ClienteController {
         // deveria ser implementado para substituir completamente um recurso no servidor. 
         // deveria ser implementado para alterar parte de um recurso existente no servidor.
         // fakestorestapi.com/docs
-        if(requisicao.method === "PUT" || requisicao.method === "PATCH" && requisicao.is("aplication/json")){
+        if(requisicao.method === "PUT" || requisicao.method === "PATCH" && requisicao.is("application/json")){
             // pelo padrão rest o id do cliente deve ser buscado na URL, e nâo no corpo da requisição.
             // params - parâmetros da URL.
             const id = requisicao.params.id; // o id está na URL da requisição.
@@ -88,7 +89,7 @@ export default class ClienteController {
                 // instanciando os objetos cidade e cliente.
                 const cidadeObj = new Cidade(cidade.id);
                 const cliente = new Cliente(id, cpf, nome, endereco, bairro, cidadeObj, telefone, email);
-                Cliente.editar()
+                cliente.editar()
                 .then(() => {
                     resposta.status(200).json({
                         "status": true,
@@ -124,7 +125,7 @@ export default class ClienteController {
             const id = requisicao.params.id;
             if(id > 0){
                 const cliente = new Cliente(id);
-                Cliente.excluir()
+                cliente.excluir()
                 .then(() => {
                     resposta.status(200).json({
                         "status": true,
@@ -160,13 +161,15 @@ export default class ClienteController {
             // a identificação da existência de um id na URL, provocará a consulta por id (consultar por pessoa especifica).
             // sem id a consulta será genérica.
 
+            let termo;
+
             const id = requisicao.params.id;
             if(!isNaN(id)){ // id é um número?
 
                 termo = id;
 
             }else{
-                let termo = ''; // string vazia.
+                 termo = ''; // string vazia.
             }
 
             const cliente = new Cliente();

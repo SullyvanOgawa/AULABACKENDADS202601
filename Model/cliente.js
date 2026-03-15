@@ -85,6 +85,18 @@ export default class Cliente {
     return await clienteDb.consultar(termo);
   }
 
-
+  //override bi nétodo jason
+  toJSON() {
+    return {
+      id: this.#id,
+      cpf: this.#cpf,
+      nome: this.#nome,
+      endereco: this.#endereco,
+      bairro: this.#bairro,
+      cidade: this.#cidade,
+      telefone: this.#telefone,
+      email: this.#email
+    };
+  }
  
 }
