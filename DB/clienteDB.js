@@ -32,8 +32,7 @@ export default class ClienteDB {
 
     async editar(cliente) {
         if(cliente instanceof Cliente){
-            const sql = `UPDATE SET cliente(cli_cpf = ?, cli_nome = ?, cli_endereco = ?, cli_bairro = ?, cid_id     = ?,                            cli_telefone = ?, cli_email = ?)  
-                                            WHERE cli_id = ?`;
+            const sql = `UPDATE cliente SET cli_cpf = ?, cli_nome = ?, cli_endereco = ?, cli_bairro = ?, cid_id = ?, cli_telefone = ?, cli_email = ? WHERE cli_id = ?`;
             
             //lista de parametros para passar os valores de forma segura
             const parametros = [cliente.cpf, 
@@ -42,7 +41,8 @@ export default class ClienteDB {
                                 cliente.bairro, 
                                 cliente.cidade.id, // cidade é um objeto, então pega o id dele desse jeito. 
                                 cliente.telefone, 
-                                cliente.email];
+                                cliente.email, 
+                                cliente.id];
             
             const conexao = await obterConexao();
 

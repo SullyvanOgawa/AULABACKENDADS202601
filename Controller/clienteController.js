@@ -68,11 +68,11 @@ export default class ClienteController {
     }
 
     // Requisição do tipo PUT ou PATCH
-     editar(requisicao, resposta) {
+    editar(requisicao, resposta) {
         // deveria ser implementado para substituir completamente um recurso no servidor. 
         // deveria ser implementado para alterar parte de um recurso existente no servidor.
         // fakestorestapi.com/docs
-        if(requisicao.method === "PUT" || requisicao.method === "PATCH" && requisicao.is("application/json")){
+        if((requisicao.method === "PUT" || requisicao.method === "PATCH") && requisicao.is("application/json")){
             // pelo padrão rest o id do cliente deve ser buscado na URL, e nâo no corpo da requisição.
             // params - parâmetros da URL.
             const id = requisicao.params.id; // o id está na URL da requisição.
@@ -89,6 +89,7 @@ export default class ClienteController {
                 // instanciando os objetos cidade e cliente.
                 const cidadeObj = new Cidade(cidade.id);
                 const cliente = new Cliente(id, cpf, nome, endereco, bairro, cidadeObj, telefone, email);
+
                 cliente.editar()
                 .then(() => {
                     resposta.status(200).json({
