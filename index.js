@@ -30,6 +30,7 @@
 
 import express from "express";
 import rotaCliente from "./routes/rotaCliente.js";
+import rotaCidade from "./routes/rotaCidade.js";
 
 const localhost = '0.0.0.0';
 const port = 4000;
@@ -39,6 +40,7 @@ app.use(express.json()); // permite que o express entenda jason.
 
 // quero que a aplicação ofereça o recurso cliente. 
 app.use("/cliente", rotaCliente);
+app.use("/cidade", rotaCidade);
 
 
 app.listen(port, localhost, () => console.log(`API Executando na porta ${port}`));

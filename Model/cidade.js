@@ -1,3 +1,4 @@
+import CidadeDB from '../DB/cidadeDB.js';
 export default class Cidade{
     #id;
     #nome;
@@ -36,13 +37,31 @@ export default class Cidade{
         return `${this.#nome}/UF: ${this.#uf}`
     }
 
-    async gravar() {}
+    async gravar(){
+        const cidadeDB = new CidadeDB();
+        await cidadeDB.gravar(this);
+    }
 
-    async atualizar() {}
+    async editar(){
+        const cidadeDB = new CidadeDB();
+        await cidadeDB.editar(this);
+    }
 
-    async excluir() {}
+    async excluir(){
+        const cidadeDB = new CidadeDB();
+        await cidadeDB.excluir(this);
+    }
 
-    async consultar() {
-        return "";
+    async consultar(termo){
+        const cidadeDB = new CidadeDB();
+        return await cidadeDB.consultar(termo);
+    }
+
+    toJSON() {
+        return {
+            "id": this.#id,
+            "nome": this.#nome,
+            "uf": this.#uf
+        }
     }
 }
