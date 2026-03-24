@@ -26,7 +26,7 @@ export default class CidadeController {
                 });
             }
             else{
-                resposta.satus(400).json({
+                resposta.status(400).json({
                     "status": false,
                     "mensagem": "Todas os campos devem ser preenchidas!!!"
                 });

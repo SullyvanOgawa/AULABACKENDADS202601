@@ -31,10 +31,14 @@
 import express from "express";
 import rotaCliente from "./routes/rotaCliente.js";
 import rotaCidade from "./routes/rotaCidade.js";
+import cors from "cors";
 
 const localhost = '0.0.0.0';
 const port = 4000;
 const app = express();
+app.use(cors({
+    origin: 'http://localhost:8000'
+})); // utilizando a politica de segurança cors para que o frontend possa se comunicar com o backend, ou seja, consumir os seus recursos .
 
 app.use(express.json()); // permite que o express entenda jason.
 
